@@ -14,7 +14,7 @@ if __name__ == '__main__':
         ],
         entry_points={
             'console_scripts': [
-                'atcodertools = atcodertools.cli:create'
+                'atcodertools = atcodertools.core:main'
             ]
         }
     )

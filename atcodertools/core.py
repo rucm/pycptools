@@ -20,5 +20,9 @@ class Commands(object):
             problem_list.load(filename)
             print('problem load success')
 
-if __name__ == '__main__':
+
+def main():
     fire.Fire(Commands)
+
+if __name__ == '__main__':
+    main()
