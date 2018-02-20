@@ -32,6 +32,8 @@ class ProblemList(object):
         res = self.request(url)
         root = html.fromstring(res.text)
         elements = root.cssselect('span.lang-ja div.part pre')
+        if len(elements) == 0:
+            elements = root.cssselect('div#task-statement div.part pre')
         input_format = elements[0].text_content()
 
         samples = []
