@@ -26,11 +26,10 @@ class ProblemList(object):
             print(e.message)
         else:
             res.raise_for_status()
-            return res
+            return html.fromstring(res.text)
 
     def get_samples(self, url):
-        res = self.request(url)
-        root = html.fromstring(res.text)
+        root = self.request(url)
         elements = root.cssselect('span.lang-ja div.part pre')
         if len(elements) == 0:
             elements = root.cssselect('div#task-statement div.part pre')
@@ -59,8 +58,7 @@ class ProblemList(object):
         }
 
     def fetch(self):
-        res = self.request(self.base_url + '/assignments')
-        root = html.fromstring(res.text)
+        root = self.request(self.base_url + '/assignments')
         elements = root.cssselect('tbody tr')
         self.problems = {}
 

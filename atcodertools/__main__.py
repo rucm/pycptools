@@ -6,7 +6,7 @@ def main():
         import os.path
         path = os.path.dirname(os.path.dirname(__file__))
         sys.path[0:0] = [path]
-    from . import core
+    import core
     sys.exit(core.main())
 
 
