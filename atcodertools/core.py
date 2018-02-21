@@ -1,6 +1,6 @@
 import fire
 
-from problem_list import ProblemList
+from .problem_list import ProblemList
 
 
 class Commands(object):
