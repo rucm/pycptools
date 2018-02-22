@@ -65,14 +65,14 @@ class ProblemList(object):
         for ele in elements:
             self.add_problem(ele)
 
-    def save(self):
+    def save(self, path='./'):
         filename = '{}.json'.format(self.contest_id)
         obj = {
             'base_url': self.base_url,
             'problems': self.problems
         }
 
-        with codecs.open(filename, 'w', 'utf-8') as file:
+        with codecs.open(path + filename, 'w', 'utf-8') as file:
             json.dump(obj=obj, fp=file, ensure_ascii=False, indent=4)
 
     def load(self, filename):

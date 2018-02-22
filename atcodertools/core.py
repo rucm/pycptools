@@ -1,6 +1,7 @@
 import fire
 
 from .problem_list import ProblemList
+from .project import Project
 
 
 class Commands(object):
@@ -14,6 +15,9 @@ class Commands(object):
         if contest_id is not None:
             problem_list = ProblemList(contest_id)
             problem_list.fetch()
+
+            project = Project()
+            project.create(problem_list)
             print('problem fetch success')
         elif filename is not None:
             problem_list = ProblemList()
