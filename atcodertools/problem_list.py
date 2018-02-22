@@ -65,7 +65,7 @@ class ProblemList(object):
         for ele in elements:
             self.add_problem(ele)
 
-    def save(self, path='./'):
+    def save(self, path=''):
         filename = '{}.json'.format(self.contest_id)
         obj = {
             'base_url': self.base_url,
