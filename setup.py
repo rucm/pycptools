@@ -7,14 +7,14 @@ if __name__ == '__main__':
         version='1.0.0',
         packages=setuptools.find_packages(),
         install_requires=[
-            'fire',
+            'click',
             'requests',
             'lxml',
             'cssselect'
         ],
         entry_points={
             'console_scripts': [
-                'atcodertools = atcodertools.core:main'
+                'atcodertools = atcodertools.cli:atcodertools'
             ]
         }
     )

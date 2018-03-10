@@ -6,8 +6,8 @@ def main():
         import os.path
         path = os.path.dirname(os.path.dirname(__file__))
         sys.path[0:0] = [path]
-    from . import core
-    sys.exit(core.main())
+    from . import cli
+    sys.exit(cli.atcodertools())
 
 
 if __name__ == "__main__":
