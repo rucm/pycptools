@@ -1,4 +1,5 @@
 import click
+from .tester import Tester
 from .project import Project
 from .service import Service
 
@@ -29,7 +30,8 @@ def logout():
 @atcodertools.command()
 @click.argument('problem-id')
 def test(problem_id):
-    click.echo('test')
+    tester = Tester()
+    tester.test(problem_id)
 
 
 @atcodertools.command()
