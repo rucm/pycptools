@@ -33,7 +33,9 @@ class Service:
         return self._is_authorized
 
     def request(self, method, url, data=None, redirect=True):
-        assert method in ['GET', 'POST'], 'Unsupported methods.'
+        if method not in ['GET', 'POST']:
+            click.echo('Unsupported methods.')
+            return
 
         try:
             res = self.session.request(

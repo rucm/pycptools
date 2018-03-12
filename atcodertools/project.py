@@ -1,5 +1,6 @@
 import os
 import re
+import click
 import json
 import codecs
 import shutil
@@ -27,18 +28,19 @@ class Project:
         self.problems = {}
         self.contest_id = ''
 
-    def download(self, contest_id):
-        self.contest_id = contest_id
+    def create(self, contest_id):
+        self._download(contest_id)
+        if len(self.problems) == 0:
+            click.echo('Can\'t create project.')
+        self._make_dir(contest_id)
+        self._write_properties(contest_id)
+        self._export_template(contest_id)
+
+    def _download(self, contest_id):
         url = 'https://{}.contest.atcoder.jp'.format(contest_id)
         res = self.service.request('GET', url + '/assignments')
         root = html.fromstring(res.text)
         self._set_problems(url, root.cssselect('tbody tr'))
-
-    def create(self):
-        assert len(self.problems) > 0, 'Can\'t create project.'
-        self._make_dir(self.contest_id)
-        self._write_properties(self.contest_id)
-        self._export_template(self.contest_id)
 
     def _set_problems(self, url, elements):
         self.problems = {}
@@ -107,7 +109,7 @@ class Project:
 
     def _write_properties(self, path):
         properties_file = os.path.join(path, 'properties.json')
-        obj = {'contest-id': self.contest_id, 'problems': self.problems}
+        obj = {'contest-id': path, 'problems': self.problems}
         with codecs.open(properties_file, 'w', 'utf-8') as f:
             json.dump(obj=obj, fp=f, ensure_ascii=False, indent=4)
 

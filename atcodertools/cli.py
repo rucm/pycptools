@@ -12,9 +12,7 @@ def atcodertools():
 @atcodertools.command()
 @click.argument('contest-id')
 def create(contest_id):
-    project = Project()
-    project.download(contest_id)
-    project.create()
+    Project().create(contest_id)
 
 
 @atcodertools.command()
@@ -30,8 +28,7 @@ def logout():
 @atcodertools.command()
 @click.argument('problem-id')
 def test(problem_id):
-    tester = Tester()
-    tester.test(problem_id)
+    Tester().test(problem_id)
 
 
 @atcodertools.command()
