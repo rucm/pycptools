@@ -10,8 +10,7 @@ from .service import Service
 
 
 CONFIRM_MESSAGE = 'It already exists. Do you want to overwrite? [y/n]\n'
-TEMPLATE_SOURCE = '''
-#include <bits/stdc++.h>
+TEMPLATE_SOURCE = '''#include <bits/stdc++.h>
 using namespace std;
 
 int main(void) {
