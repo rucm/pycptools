@@ -20,15 +20,19 @@ class Tester:
         click.echo('test cases : {}'.format(len(samples)))
 
         source_file = os.path.join('src', '{}.cpp'.format(problem_id.upper()))
-        returncode, _ = self._compile(source_file)
 
+        returncode, _ = self._compile(source_file)
         click.echo('compile : {}'.format('OK' if returncode == 0 else 'CE'))
         if returncode == 1:
             return
 
         for i, sample in enumerate(samples):
-            result = self._compare(command, sample['in'], sample['out'])
-            click.echo('case {} : {}'.format(i + 1, 'AC' if result else 'WA'))
+            click.echo('case {}'.format(i + 1))
+            r, o = self._compare(command, sample['in'], sample['out'])
+            click.echo('{}'.format('AC' if r else 'WA'))
+            if r:
+                click.echo('output:')
+                click.echo('{}'.format(o))
 
     def _compare(self, command, in_data='', out_data=''):
         p = subprocess.Popen(
@@ -39,9 +43,9 @@ class Tester:
         )
         out = p.communicate(in_data)[0]
 
-        out = ' '.join(out.splitlines())
-        _out = ' '.join(out_data.splitlines())
-        return out == _out
+        _out = ' '.join(out.splitlines())
+        _out_data = ' '.join(out_data.splitlines())
+        return _out == _out_data, out
 
     def _compile(self, filename):
         p = subprocess.run(
