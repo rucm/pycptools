@@ -4,7 +4,7 @@ import setuptools
 if __name__ == '__main__':
     setuptools.setup(
         name='atcodertools',
-        version='1.0.1',
+        version='1.0.2',
         packages=setuptools.find_packages(),
         install_requires=[
             'click',

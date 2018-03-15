@@ -27,10 +27,10 @@ class Tester:
             return
 
         for i, sample in enumerate(samples):
-            click.echo('case {}'.format(i + 1))
+            click.echo('case {}:'.format(i + 1))
             r, o = self._compare(command, sample['in'], sample['out'])
             click.echo('{}'.format('AC' if r else 'WA'))
-            if r:
+            if not r:
                 click.echo('output:')
                 click.echo('{}'.format(o))
 
