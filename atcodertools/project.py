@@ -26,7 +26,6 @@ class Project:
     def __init__(self, service=Service()):
         self.service = service
         self.problems = {}
-        self.contest_id = ''
 
     def create(self, contest_id):
         self._download(contest_id)

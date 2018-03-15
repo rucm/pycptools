@@ -75,10 +75,11 @@ class Service:
     def _get_messages_from_cookie(self, cookies):
         result, msg = '', ''
         for cookie in cookies:
-            if cookie.name.startswith('__message_'):
-                value = json.loads(urllib.parse.unquote_plus(cookie.value))
-                root = html.fromstring(value['c'])
-                elements = root.cssselect('span.lang-en')[0]
-                result = value['t']
-                msg = elements.text_content()
+            if not cookie.name.startswith('__message_'):
+                continue
+            value = json.loads(urllib.parse.unquote_plus(cookie.value))
+            root = html.fromstring(value['c'])
+            elements = root.cssselect('span.lang-en')[0]
+            result = value['t']
+            msg = elements.text_content()
         return result, msg
