@@ -14,6 +14,12 @@ COOKIE_FILE = os.path.join(HOME_PATH, 'cookiejar')
 
 class Service:
 
+    def __init__(self):
+        self.session = requests.Session()
+
+
+class _Service:
+
     def __init__(self, filename=COOKIE_FILE):
         self.session = requests.Session()
         self._is_authorized = False
