@@ -1,1 +1,1 @@
-# atcoder-tools
+# cptools
