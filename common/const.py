@@ -1,6 +1,5 @@
 import configparser
 import sys
-import re
 
 
 class _const:
@@ -14,6 +13,12 @@ class _const:
         self.__dict__[name] = value
 
     def setup(self):
-        inifile = configparser.ConfigParser().read('config.ini', 'utf-8')
+        config = configparser.ConfigParser().read('config.ini', 'utf-8')
+        for section in config.sections():
+            for item in config.items(section):
+                self.__setattr__(item[0], item[1])
+
+    def default_setup(self):
+        pass
 
 sys.modules[__name__] = _const()
