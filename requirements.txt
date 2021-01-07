@@ -6,7 +6,7 @@ click==6.7
 cryptography==2.1.4
 cssselect==1.0.3
 idna==2.6
-lxml==4.1.1
+lxml==4.6.2
 pycparser==2.18
 pyOpenSSL==17.5.0
 PySocks==1.6.8
